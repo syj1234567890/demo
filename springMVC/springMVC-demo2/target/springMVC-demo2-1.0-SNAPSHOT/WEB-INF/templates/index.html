@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>这是一个标题</title>
+</head>
+
+<body>
+<h1>首页</h1>
+<!--<a th:href="@{/hello/testRequestMapping}">测试RequestMapping注解的位置</a>--><!--超链接-->
+<a th:href="@{/testRequestMapping}">测试testRequestMapping</a><br>
+<a th:href="@{/test}">测试test</a><!--超链接发送的是get请求-->
+
+
+
+<form th:action="@{/testPut}" method="put"><!--form表单里只能是get和post，如果不是按get算-->
+    <input type="submit" value="测试form表单是否能够发送put或delete">
+</form>
+
+
+
+<a th:href="@{/testParamsAndHeaders?username=admin}">测试ParamsAndHeaders注解的params属性-->get</a><br>
+<a th:href="@{/testParamsAndHeaders(username=admin)}">(不要报错这么写)测试ParamsAndHeaders注解的params属性-->get</a>
+
+<form th:action="@{/testParamsAndHeaders}" method="put">
+    <input type="submit" value=">测试ParamsAndHeaders注解的params属性-->post">
+</form>
+
+
+<h3>/testParamsAndHeaders</h3>
+
+<form method="POST" th:action="@{/testParamsAndHeaders}">
+    <button type="submit" name="submit" value="username=admin">发起普通post请求</button>
+</form>
+
+<h3>post请求</h3>
+<form method="POST" th:action="@{/post-request}">
+    <input type="text" name="name" id="nameId"/>
+    <button type="submit" name="submit" value="value" class="button">发起普通post请求</button>
+</form>
+
+<form th:action="@{/testPost(username=admin)}" method="post"><!--form表单里只能是get和post，如果不是按get算-->
+    <input type="submit" value="测试Post(*-*)">
+</form>
+
+<a th:href="@{/testParamsAndHeaders(username='admin',password=123)}">测试testParamsAndHeaders</a><br><!--thmeleaf会解析-->
+<!--@RequestMapping("/a?a/testAnt")-->
+<a th:href="@{/ada/testAnt}">测试匹配Ant风格路径-->?</a><br>
+<a th:href="@{/a1a/testAnt}">测试匹配Ant风格路径-->**</a><br>
+
+</body>
+</html>
